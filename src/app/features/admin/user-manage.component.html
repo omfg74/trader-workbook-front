@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Пользователи</h1>
+</div>
+
+<div class="table-wrap">
+  <table mat-table [dataSource]="rows" class="full-table">
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>Username</th>
+      <td mat-cell *matCellDef="let row">{{ row.username }}</td>
+    </ng-container>
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef>Роль</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-form-field appearance="outline" class="role-field" subscriptSizing="dynamic">
+          <mat-select [value]="row.role" (selectionChange)="changeRole(row, $event.value)">
+            @for (r of roles; track r) {
+              <mat-option [value]="r">{{ r }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Создан</th>
+      <td mat-cell *matCellDef="let row">{{ row.createdAt | date: 'dd.MM.yyyy HH:mm' }}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  @if (!rows.length) {
+    <p class="empty">Нет пользователей</p>
+  }
+</div>

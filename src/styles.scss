@@ -1,0 +1,36 @@
+/* Global styles + dark theme */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background: #f4f6fa;
+  color: #1a1a1a;
+  --tw-surface: #ffffff;
+}
+
+body.theme-dark {
+  background: #12161e;
+  color: #e8eaed;
+  --tw-surface: #1e2430;
+}
+
+body.theme-dark .mat-mdc-card,
+body.theme-dark .mat-mdc-table,
+body.theme-dark .mat-mdc-paginator {
+  --mdc-elevated-card-container-color: #1e2430;
+  --mat-table-background-color: #1e2430;
+}
+
+/* MatSelect overlay above dialog */
+.cdk-overlay-container {
+  z-index: 2000;
+}
+
+.security-select-panel {
+  max-height: 240px;
+}

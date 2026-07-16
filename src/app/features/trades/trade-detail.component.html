@@ -1,0 +1,43 @@
+@if (trade; as t) {
+  <div class="page-header">
+    <h1>{{ t.securityTicker }} — {{ t.securityName }}</h1>
+    <div class="actions">
+      <a mat-stroked-button [routerLink]="['/trades', t.id, 'edit']">
+        <mat-icon>edit</mat-icon>
+        Изменить
+      </a>
+      <button mat-stroked-button color="warn" type="button" (click)="deleteTrade()">
+        <mat-icon>delete</mat-icon>
+        Удалить
+      </button>
+      <a mat-button routerLink="/trades">Назад</a>
+    </div>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <dl class="details">
+        <div><dt>Пользователь</dt><dd>{{ t.username }}</dd></div>
+        <div><dt>Тикер</dt><dd>{{ t.securityTicker }}</dd></div>
+        <div><dt>Название</dt><dd>{{ t.securityName }}</dd></div>
+        <div><dt>Тип</dt><dd>{{ security?.typeName || '—' }}</dd></div>
+        <div><dt>Эмитент</dt><dd>{{ security?.issuerName || '—' }}</dd></div>
+        <div><dt>Сторона</dt><dd>{{ t.side }}</dd></div>
+        <div><dt>Цена покупки</dt><dd>{{ t.purchasePrice | number: '1.2-4' }}</dd></div>
+        <div><dt>Комиссия биржи</dt><dd>{{ t.exchangeCommission | number: '1.2-4' }}</dd></div>
+        <div><dt>Комиссия брокера</dt><dd>{{ t.brokerCommission | number: '1.2-4' }}</dd></div>
+        <div><dt>Дата покупки</dt><dd>{{ t.purchaseDate | date: 'dd.MM.yyyy HH:mm' }}</dd></div>
+        <div><dt>Статус</dt><dd>{{ t.status }}</dd></div>
+        <div><dt>Цена продажи</dt><dd>{{ t.sellPrice != null ? (t.sellPrice | number: '1.2-4') : '—' }}</dd></div>
+        <div><dt>Дата продажи</dt><dd>{{ t.sellDate ? (t.sellDate | date: 'dd.MM.yyyy HH:mm') : '—' }}</dd></div>
+        <div>
+          <dt>PnL</dt>
+          <dd [class.pnl-pos]="t.pnl != null && t.pnl > 0" [class.pnl-neg]="t.pnl != null && t.pnl < 0">
+            {{ t.pnl != null ? (t.pnl | number: '1.2-4') : '—' }}
+          </dd>
+        </div>
+        <div class="full"><dt>Комментарий</dt><dd>{{ t.comment || '—' }}</dd></div>
+      </dl>
+    </mat-card-content>
+  </mat-card>
+}

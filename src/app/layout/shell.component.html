@@ -1,0 +1,23 @@
+<div class="shell">
+  <mat-toolbar color="primary" class="toolbar">
+    <a routerLink="/trades" class="brand">Дневник трейдера</a>
+    <span class="spacer"></span>
+    @if (auth.user(); as user) {
+      <a mat-button routerLink="/trades">Сделки</a>
+      @if (auth.isAdmin()) {
+        <a mat-button routerLink="/admin">Админ</a>
+      }
+      <span class="username">{{ user.username }}</span>
+      <button mat-icon-button type="button" (click)="theme.toggle()" [attr.aria-label]="'Тема'">
+        <mat-icon>{{ theme.dark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+      </button>
+      <button mat-button type="button" (click)="logout()">Выйти</button>
+    }
+  </mat-toolbar>
+  @if (notifications.loading()) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>

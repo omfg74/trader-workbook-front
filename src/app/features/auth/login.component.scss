@@ -1,0 +1,29 @@
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, #e8eef7 0%, #f7f9fc 50%, #dce6f5 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.full {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 1rem;
+}
+
+:host-context(.theme-dark) .auth-page {
+  background: linear-gradient(160deg, #12161e 0%, #1a2030 50%, #0f131a 100%);
+}

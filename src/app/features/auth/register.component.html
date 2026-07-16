@@ -1,0 +1,34 @@
+<div class="auth-page">
+  <mat-card class="auth-card">
+    <mat-card-header>
+      <mat-card-title>Регистрация</mat-card-title>
+      <mat-card-subtitle>Дневник трейдера</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Имя пользователя</mat-label>
+          <input matInput formControlName="username" autocomplete="username" />
+          @if (form.controls.username.hasError('required')) {
+            <mat-error>Обязательное поле</mat-error>
+          } @else if (form.controls.username.hasError('minlength')) {
+            <mat-error>Минимум 3 символа</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="full">
+          <mat-label>Пароль</mat-label>
+          <input matInput type="password" formControlName="password" autocomplete="new-password" />
+          @if (form.controls.password.hasError('required')) {
+            <mat-error>Обязательное поле</mat-error>
+          } @else if (form.controls.password.hasError('minlength')) {
+            <mat-error>Минимум 6 символов</mat-error>
+          }
+        </mat-form-field>
+        <button mat-flat-button color="primary" class="full" type="submit">Зарегистрироваться</button>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <a mat-button routerLink="/login">Уже есть аккаунт</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

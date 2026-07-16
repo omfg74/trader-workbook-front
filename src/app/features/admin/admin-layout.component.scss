@@ -1,0 +1,43 @@
+.admin {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1rem;
+  min-height: 60vh;
+}
+
+.sidebar {
+  background: var(--tw-surface, #fff);
+  border-radius: 8px;
+  padding: 0.75rem;
+
+  h2 {
+    margin: 0.25rem 0.75rem 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  a.active {
+    background: rgba(25, 118, 210, 0.12);
+  }
+}
+
+.admin-content {
+  min-width: 0;
+}
+
+.admin.mobile {
+  grid-template-columns: 1fr;
+
+  .sidebar {
+    padding-bottom: 0;
+  }
+
+  mat-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+}
+
+:host-context(.theme-dark) .sidebar {
+  background: var(--tw-surface, #1e2430);
+}
