@@ -25,10 +25,10 @@ API URL в development: `http://localhost:8000` (`src/environments/environment.d
 
 ## Docker
 
-Контейнер только отдаёт статику на порту `4200`. Прокси `/api/` и `/auth/` на бэкенд настраивается во внешнем reverse proxy.
+Контейнер отдаёт статику на порту **4200**. `/api/` и `/auth/` проксируйте на бэкенд сами.
 
 ```bash
-docker compose up --build
+docker compose up --build --force-recreate
 ```
 
 Фронт: http://localhost:4200

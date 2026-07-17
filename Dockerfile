@@ -16,7 +16,7 @@ RUN npm ci --ignore-scripts \
 COPY . .
 RUN npm run build -- --configuration=production
 
-# Runtime: static SPA only — reverse proxy handles /api and /auth
+# Runtime: static SPA only — reverse proxy настраивается снаружи
 FROM node:20-alpine
 WORKDIR /app
 RUN npm install -g serve@14
