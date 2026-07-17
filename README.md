@@ -25,13 +25,15 @@ API URL в development: `http://localhost:8000` (`src/environments/environment.d
 
 ## Docker
 
-Контейнер отдаёт статику на порту **4200**. `/api/` и `/auth/` проксируйте на бэкенд сами.
+Контейнер на порту **4200** отдаёт SPA и проксирует `/auth/` и `/api/` на бэкенд (`BACKEND_URL`, по умолчанию `http://host.docker.internal:8000`).
+
+Сначала поднимите бэкенд (`trader-workbook`), затем:
 
 ```bash
-docker compose up --build --force-recreate
+docker compose -f compose.yaml up --build --force-recreate
 ```
 
-Фронт: http://localhost:4200
+Фронт: http://localhost:4200 (с другой машины в LAN — `http://<host-ip>:4200`).
 
 ## Учётки
 

@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build: .
+    ports:
+      - "4200:4200"
+    environment:
+      # Backend on the Docker host (trader-workbook compose publishes 8000)
+      BACKEND_URL: http://host.docker.internal:8000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

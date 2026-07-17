@@ -16,10 +16,14 @@ RUN npm ci --ignore-scripts \
 COPY . .
 RUN npm run build -- --configuration=production
 
-# Runtime: static SPA only — reverse proxy настраивается снаружи
-FROM node:20-alpine
-WORKDIR /app
-RUN npm install -g serve@14
-COPY --from=build /app/dist/trader-frontend/browser ./dist
+# Runtime: nginx serves SPA and proxies /auth + /api to the backend
+FROM nginx:1.27-alpine
+RUN apk add --no-cache gettext
+COPY --from=build /app/dist/trader-frontend/browser /usr/share/nginx/html
+COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh \
+ && rm -f /etc/nginx/conf.d/default.conf
 EXPOSE 4200
-CMD ["serve", "-s", "dist", "-l", "tcp://0.0.0.0:4200"]
+ENV BACKEND_URL=http://host.docker.internal:8000
+ENTRYPOINT ["/docker-entrypoint.sh"]
