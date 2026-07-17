@@ -8,7 +8,7 @@ SPA для работы с API `trader-workbook`.
 - Angular Material
 - RxJS
 - SCSS
-- Docker + nginx
+- Docker (`serve` — статика SPA)
 
 ## Локальный запуск
 
@@ -25,14 +25,13 @@ API URL в development: `http://localhost:8000` (`src/environments/environment.d
 
 ## Docker
 
-Бэкенд должен быть доступен на хосте на порту `8000`.
+Контейнер только отдаёт статику на порту `4200`. Прокси `/api/` и `/auth/` на бэкенд настраивается во внешнем reverse proxy.
 
 ```bash
 docker compose up --build
 ```
 
-Фронт: http://localhost:4200  
-nginx проксирует `/api/` и `/auth/` на `host.docker.internal:8000`.
+Фронт: http://localhost:4200
 
 ## Учётки
 
